@@ -5,13 +5,23 @@ var webfontsGenerator = require('webfonts-generator');
 var SRC = path.join(__dirname, 'icons');
 var DEST = path.join(__dirname, 'dist');
 
+/*
+ * Read all icon files in the SRC directory and initialize
+ * the map.
+ */
 var icons = fs.readdirSync(SRC).map(function(file) { return file.replace('.svg', ''); });
 var map = {};
 
+/*
+ * Make sure the destination directory exists.
+ */
 if (!fs.existsSync(DEST)) {
   fs.mkdirSync(DEST);
 }
 
+/*
+ * If an existing unicode map file is found, load it up.
+ */
 if (fs.existsSync('map.json')) {
   map = JSON.parse(fs.readFileSync('map.json', 'utf8'));
   Object.keys(map).forEach(function (icon) {
@@ -19,6 +29,10 @@ if (fs.existsSync('map.json')) {
   });
 }
 
+/*
+ * Ensure each icon in the directory has a unicode value and
+ * assign one if it does not.
+ */
 icons.forEach(function (icon) {
   if (!map[icon]) {
     var values = Object.values(map).sort().reverse();
@@ -31,16 +45,17 @@ icons.forEach(function (icon) {
   }
 });
 
+/*
+ * Set options to use when generating the font files.
+ */
 var options = {
   dest: DEST,
   files: Object.keys(map).map(function (file) { return path.join(SRC, file + ".svg") }),
   codepoints: map,
   types: ['ttf', 'woff', 'woff2', 'eot', 'svg'],
   fontName: 'shepherdchurch',
-  html: true,
   cssFontsUrl: '../Assets/Fonts/ShepherdChurch/',
   cssTemplate: 'templates/css.hbs',
-  htmlTemplate: 'templates/html.hbs',
   templateOptions: {
     classPrefix: 'sc'
   }
