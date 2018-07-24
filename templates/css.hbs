@@ -1,0 +1,23 @@
+@font-face {
+	font-family: "{{fontName}}";
+	src: {{{src}}};
+}
+
+.{{classPrefix}} {
+	font-family: 'shepherdchurch' !important;
+	display: inline-block;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+{{#each codepoints}}
+.{{../classPrefix}}-{{@key}}:before {
+	content: "\\{{this}}";
+}
+{{/each}}
