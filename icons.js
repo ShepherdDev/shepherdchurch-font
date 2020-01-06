@@ -56,6 +56,8 @@ var options = {
   fontName: 'shepherdchurch',
   cssFontsUrl: '../Assets/Fonts/ShepherdChurch/',
   cssTemplate: 'templates/css.hbs',
+  html: true,
+  htmlTemplate: 'templates/html.hbs',
   templateOptions: {
     classPrefix: 'sc'
   }

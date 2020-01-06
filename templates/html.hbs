@@ -1,0 +1,20 @@
+<html>
+<head>
+  <link rel="stylesheet" href="{{fontName}}.css" />
+  <style>
+@font-face {
+  font-family: "{{fontName}}";
+  src: url("{{fontName}}.eot") format("embedded-opentype"),
+       url("{{fontName}}.woff2") format("woff2"),
+       url("{{fontName}}.woff") format("woff"),
+       url("{{fontName}}.ttf") format("truetype");
+  </style>
+</head>
+<body>
+
+{{#each names}}
+<p>.{{../classPrefix}}-{{this}}: <i class="{{../classPrefix}} {{../classPrefix}}-{{this}}"></i></p>
+{{/each}}
+
+</body>
+</html>
