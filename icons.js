@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var webfontsGenerator = require('webfonts-generator');
+var webfontsGenerator = require('@vusion/webfonts-generator');
 
 var SRC = path.join(__dirname, 'icons');
 var DEST = path.join(__dirname, 'dist');
